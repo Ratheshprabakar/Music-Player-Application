@@ -43,3 +43,6 @@
   
   [Search.java](https://github.com/Ratheshprabakar/Music-Player-Application/blob/master/src/com/onebill/trainingAssessment/musicplayer/Search.java) - Class to do search a song and play the particular song from the Music player
   
+  
+  ### Database Table Structure
+  [Image](https://github.com/Ratheshprabakar/Music-Player-Application/blob/master/src/TableStructure.png)
