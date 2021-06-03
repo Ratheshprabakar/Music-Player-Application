@@ -43,6 +43,8 @@ public class Search extends Play {
 			pstmt.setString(1, songTitle);
 			songs = pstmt.executeQuery();
 			int count = 0;
+			System.out.println("Song_Title\tArtist_Name\tAlbum_Name\tPlay Id");
+			System.out.println("---------------------------------------------");
 			while (songs.next()) {
 				int songId = songs.getInt("Song_ID");
 				System.out.print(songs.getString("Song_Title") + "\t");

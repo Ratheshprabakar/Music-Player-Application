@@ -10,7 +10,7 @@ import java.sql.Connection;
 
 /**
  * @author Rathesh Prabakar
- * @version 2.0
+ * @version 2.0 03/06/2021
  */
 public class Configuration {
 
