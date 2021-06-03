@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  * @author Rathesh Prabakar
- *
+ * @version 2.0
  */
 public class Operation extends Configuration {
 
@@ -18,6 +18,7 @@ public class Operation extends Configuration {
 	 * @param args
 	 */
 	Configuration conf = new Configuration();
+
 	public void addSongtoDB() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -25,16 +26,8 @@ public class Operation extends Configuration {
 
 		try {
 
-			con = conf.connectionConfig();
-
-			/*// Step 1
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// Step 2 Establish the connection with the database with user and password
-			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false", "root",
-					"Onebill@2020");
-*/
+			con = conf.connectionConfig(); // To get the Database connection
+			
 			// Step 3 Issuing Query
 			String query = "insert into MusicFiles (Song_Title,Artist_Name,Album_Name,Song_Location,Description) values (?,?,?,?,?)";
 
@@ -49,10 +42,10 @@ public class Operation extends Configuration {
 
 			System.out.println("\nEnter the Album Name\t");
 			String albumName = input.nextLine();
-			
+
 			System.out.println("\nEnter the Song Location\t");
 			String songLocation = input.nextLine();
-			
+
 			System.out.println("\nEnter the Description\t");
 			String songDescription = input.nextLine();
 
@@ -86,6 +79,7 @@ public class Operation extends Configuration {
 			}
 		}
 	}
+
 	public void editSonginDB() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -93,15 +87,7 @@ public class Operation extends Configuration {
 
 		try {
 
-			con = conf.connectionConfig();
-
-			/*// Step 1
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// Step 2 Establish the connection with the database with user and password
-			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false", "root",
-					"Onebill@2020");*/
+			con = conf.connectionConfig(); // To get the Database connection
 
 			// Step 3 Issuing Query
 			String query = "update MusicFiles set Song_Title = ?,Artist_Name= ?,Album_Name =?,Song_Location =?, Description =? where Song_Title = ?";
@@ -114,16 +100,16 @@ public class Operation extends Configuration {
 
 			System.out.println("Enter the New Song Title\t");
 			String songTitle = input.nextLine();
-			
+
 			System.out.println("Enter the New Artist Name\t");
 			String artistName = input.nextLine();
-			
+
 			System.out.println("Enter the New Album Name\t");
 			String albumName = input.nextLine();
-			
+
 			System.out.println("Enter the New Song Location\t");
 			String songLocation = input.nextLine();
-			
+
 			System.out.println("Enter the New Description\t");
 			String description = input.nextLine();
 
@@ -138,7 +124,7 @@ public class Operation extends Configuration {
 			if (count != 0)
 				System.out.println("Updated Successfully");
 			else
-				System.out.println("Sorry, You are wrong this time, No song found with"+ updateSongTitle);
+				System.out.println("Sorry, You are wrong this time, No song found with" + updateSongTitle);
 			input.close();
 
 		} catch (Exception e) {
@@ -159,26 +145,18 @@ public class Operation extends Configuration {
 		}
 
 	}
+
 	public void deleteASongInDB() {
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		Properties properties = new Properties();
 		int count = 0;
 
 		try {
-			con = conf.connectionConfig();
-
-			/*// Step 1
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// Step 2 Establish the connection with the database with user and password
-			properties.put("user", "root");
-			properties.put("password", "Onebill@2020");
-			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false", properties);
-
-*/			// Step 3 Issuing Query
+			con = conf.connectionConfig(); // To get the Database connection
+ 
+			 // Step 3 Issuing Query
 			String query = "delete from  MusicFiles where Song_Title = ?";
 
 			// Step 4 : Execute and process the query
@@ -188,12 +166,11 @@ public class Operation extends Configuration {
 			String songTitle = input.nextLine();
 
 			pstmt.setString(1, songTitle);
-			System.out.println("Do you want to delete "+songTitle+" (yes/no)");
+			System.out.println("Do you want to delete " + songTitle + " (yes/no)");
 			String confirmation = input.nextLine();
-			if(confirmation.equalsIgnoreCase("yes"))
+			if (confirmation.equalsIgnoreCase("yes"))
 				count = pstmt.executeUpdate();
-			else
-			{
+			else {
 				System.out.println("Thank GOD, You saved your song !!");
 				System.exit(0);
 			}
@@ -221,7 +198,5 @@ public class Operation extends Configuration {
 				// TODO: handle exception
 			}
 		}
-
 	}
-	
 }

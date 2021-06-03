@@ -7,24 +7,21 @@ import java.util.Scanner;
 
 /**
  * @author Rathesh Prabakar
- *
+ * @version 2.0
  */
 public class Main {
-
-	/**
-	 * @param args
-	 */
+	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		
+
 		System.out.println("------Welcome to MX Music Player------");
 		System.out.println("Press 1 to Play a Song");
 		System.out.println("Press 2 to Search a Song");
 		System.out.println("Press 3 to Show all Songs");
 		System.out.println("Press 4 to Operate on Songs Database\nEnter your choice\t");
 		int choice = input.nextInt();
-		
-		switch(choice) {
+
+		switch (choice) {
 		case 1:
 			Play playSongs = new Play();
 			System.out.println("Press A to 'Play All Songs'");
@@ -32,7 +29,7 @@ public class Main {
 			System.out.println("Press C to 'Play a Particular Song'");
 			System.out.println("Enter your choice\t");
 			String playChoice = input.next();
-			switch(playChoice) {
+			switch (playChoice) {
 			case "A":
 				playSongs.playAllSongs();
 				break;
@@ -41,27 +38,30 @@ public class Main {
 				break;
 			case "C":
 				System.out.println("Enter the song title you want to play");
-				String querySong = input.next();
+				String querySong = input.nextLine();
 				playSongs.playAParticularSong(querySong);
 				break;
 			}
+			playSongs=null;
 			break;
-		case 2: 
+		case 2:
 			Search search = new Search();
 			search.SearchSong();
+			search=null;
 			break;
 		case 3:
 			DisplaySongs show = new DisplaySongs();
-			System.out.println("\n--------------------------Displaying All Songs----------------------------------");
+			System.out.println("\nDisplaying All Songs\n");
 			show.showAllSongs();
+			show=null;
 			break;
-		case 4: 
+		case 4:
 			Operation edit = new Operation();
 			System.out.println("Press A to Add Songs to Songs Repository");
 			System.out.println("Press B to Edit an existing Song");
 			System.out.println("Press C to Delete an existing Song");
 			String userChoice = input.next();
-			switch(userChoice) {
+			switch (userChoice) {
 			case "A":
 				edit.addSongtoDB();
 				break;
@@ -72,13 +72,14 @@ public class Main {
 				edit.deleteASongInDB();
 				break;
 			}
+			edit = null;
 			break;
 		default:
 			System.out.println("Invalid Choice");
 		}
-		
+
 		input.close();
-		
+
 	}
 
 }
