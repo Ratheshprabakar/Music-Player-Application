@@ -1,5 +1,6 @@
 /**
- * 
+ * @Class : Configuration
+ * @Description : Class to establish a connection to the database
  */
 package com.onebill.trainingAssessment.musicplayer;
 

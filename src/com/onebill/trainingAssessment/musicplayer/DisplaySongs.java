@@ -1,5 +1,8 @@
 /**
- * 
+ * @Class : DisplaySongs
+ * @Extend Class : Configuration
+ * @Description : Class to display all songs in the database
+ * showAllSongs() -> Function to display all the songs sort by song title in display format
  */
 package com.onebill.trainingAssessment.musicplayer;
 
@@ -10,7 +13,7 @@ import java.sql.Statement;
 
 /**
  * @author Rathesh Prabakar
- * @version 2.0
+ * @version 2.0 03/06/2021
  */
 public class DisplaySongs extends Configuration {
 
@@ -26,13 +29,6 @@ public class DisplaySongs extends Configuration {
 
 			con = conf.connectionConfig(); // To get the Database connection
 
-			/*
-			 * //Step 1 Class.forName("com.mysql.jdbc.Driver");
-			 * 
-			 * //Step 2 Establish the connection with the database with user and password
-			 * con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" +
-			 * "MusicPlayer?autoReconnect=true&useSSL=false","root","Onebill@2020");
-			 */
 			// Step 3 Issuing Query
 			String query = "select * from MusicFiles order by Song_Title";
 

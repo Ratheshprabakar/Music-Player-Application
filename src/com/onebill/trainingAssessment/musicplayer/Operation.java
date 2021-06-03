@@ -1,4 +1,9 @@
 /**
+ * @Class : Operation
+ * @Description : Class to do CRUD Operations of Music in Database
+ * addsongtoDB() -> Function to add song to the database
+ * editSonginDB() -> Function to edit the existing song in the database
+ * deleteASongInDB() -> Function to delete the existing song in the database
  * 
  */
 package com.onebill.trainingAssessment.musicplayer;
@@ -10,13 +15,10 @@ import java.util.Scanner;
 
 /**
  * @author Rathesh Prabakar
- * @version 2.0
+ * @version 2.0 03/06/2021
  */
 public class Operation extends Configuration {
 
-	/**
-	 * @param args
-	 */
 	Configuration conf = new Configuration();
 
 	public void addSongtoDB() {

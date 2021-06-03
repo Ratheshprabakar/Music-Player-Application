@@ -1,5 +1,10 @@
 /**
- * 
+ * @Class : Search
+ * @Extend Class : Play -> Configuration
+ * @Description : Class to do search a song and play the particular song from the Music player
+ * SearchSong() -> Function to get the input for song title and generate a play Id
+ *  			   and get the input for play Id and
+ *  			   play that respective song using playAParticularSong()
  */
 package com.onebill.trainingAssessment.musicplayer;
 
@@ -10,7 +15,7 @@ import java.util.Scanner;
 
 /**
  * @author Rathesh Prabakar
- * @version 2.0
+ * @version 2.0 03/06/2021
  */
 public class Search extends Play {
 	

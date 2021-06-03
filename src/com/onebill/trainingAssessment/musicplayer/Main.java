@@ -1,5 +1,7 @@
 /**
- * 
+ * @Class : Main
+ * @Description : Class to drive the entire Music Player Application
+ * 				  Display all the options available in our MX Music Player
  */
 package com.onebill.trainingAssessment.musicplayer;
 
@@ -7,18 +9,22 @@ import java.util.Scanner;
 
 /**
  * @author Rathesh Prabakar
- * @version 2.0
+ * @version 2.0 03/06/2021
  */
 public class Main {
 	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
+		boolean quit = true; 
 
+		while(quit) {
 		System.out.println("------Welcome to MX Music Player------");
 		System.out.println("Press 1 to Play a Song");
 		System.out.println("Press 2 to Search a Song");
 		System.out.println("Press 3 to Show all Songs");
 		System.out.println("Press 4 to Operate on Songs Database\nEnter your choice\t");
+		System.out.println("Press 5 to Quit\t");
+
 		int choice = input.nextInt();
 
 		switch (choice) {
@@ -74,12 +80,15 @@ public class Main {
 			}
 			edit = null;
 			break;
+		case 5:
+			quit= false;
+			break;
 		default:
 			System.out.println("Invalid Choice");
 		}
 
 		input.close();
-
+	}
 	}
 
 }

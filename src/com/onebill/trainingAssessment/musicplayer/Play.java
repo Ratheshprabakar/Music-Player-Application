@@ -1,5 +1,10 @@
 /**
- * 
+ * @Class : Play
+ * @Extend Class : Configuration
+ * @Description : Class to do several play operations of Music player
+ * playAllSongs() -> Function to play all songs sorted by Song Title
+ * playSongsRandomly() -> Function to play all songs randomly using RAND()
+ * playAParticularSong() -> Function to play a particular song by getting Song Title
  */
 package com.onebill.trainingAssessment.musicplayer;
 
@@ -11,7 +16,7 @@ import java.util.Scanner;
 
 /**
  * @author Rathesh Prabakar
- * @version 2.0
+ * @version 2.0 03/06/2021
  */
 public class Play extends Configuration {
 
@@ -31,19 +36,9 @@ public class Play extends Configuration {
 			stmt = con.createStatement();
 			songs = stmt.executeQuery(query);
 
-			/*
-			 * ResultSetMetaData rsmd = songs.getMetaData(); int columnsNumber =
-			 * rsmd.getColumnCount();
-			 */
 			while (songs.next()) {
 				System.out.println("Playing " + songs.getString("Song_Title") + "...");
 				Thread.sleep(200);
-				/*
-				 * for (int i = 1; i <= columnsNumber; i++) { String columnValue =
-				 * songs.getString(i); System.out.print(columnValue + " ");
-				 * System.out.print("\t"); }
-				 */
-				// System.out.println("");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -79,19 +74,9 @@ public class Play extends Configuration {
 			stmt = con.createStatement();
 			songs = stmt.executeQuery(query);
 
-			/*
-			 * ResultSetMetaData rsmd = songs.getMetaData(); int columnsNumber =
-			 * rsmd.getColumnCount();
-			 */
 			while (songs.next()) {
 				System.out.println("Playing " + songs.getString("Song_Title") + "...");
 				Thread.sleep(400);
-				/*
-				 * for (int i = 1; i <= columnsNumber; i++) { String columnValue =
-				 * songs.getString(i); System.out.print(columnValue + " ");
-				 * System.out.print("\t"); }
-				 */
-				// System.out.println("");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -127,10 +112,6 @@ public class Play extends Configuration {
 			pstmt = con.prepareStatement(query);
 
 			Scanner input = new Scanner(System.in);
-			/*
-			 * System.out.println("Enter the Song Title you want to hear"); String querySong
-			 * = input.nextLine();
-			 */
 
 			pstmt.setString(1, querySong);
 			songs = pstmt.executeQuery();
