@@ -15,7 +15,6 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		boolean quit = true; 
 
 		System.out.println("------Welcome to MX Music Player------");
 		System.out.println("Press 1 to Play a Song");
@@ -77,9 +76,6 @@ public class Main {
 				break;
 			}
 			edit = null;
-			break;
-		case 5:
-			quit= false;
 			break;
 		default:
 			System.out.println("Invalid Choice");
