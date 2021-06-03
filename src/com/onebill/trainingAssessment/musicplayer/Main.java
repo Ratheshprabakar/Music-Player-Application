@@ -1,7 +1,7 @@
 /**
  * @Class : Main
- * @Description : Class to drive the entire Music Player Application
- * 				  Display all the options available in our MX Music Player
+ * @Description : Class to drive the entire Music Player APp
+ * showAllSongs() -> Function to display all the songs sort by song title in display format
  */
 package com.onebill.trainingAssessment.musicplayer;
 
@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * @author Rathesh Prabakar
- * @version 2.0 03/06/2021
+ * @version 2.0
  */
 public class Main {
 	
@@ -17,13 +17,11 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		boolean quit = true; 
 
-		while(quit) {
 		System.out.println("------Welcome to MX Music Player------");
 		System.out.println("Press 1 to Play a Song");
 		System.out.println("Press 2 to Search a Song");
 		System.out.println("Press 3 to Show all Songs");
 		System.out.println("Press 4 to Operate on Songs Database\nEnter your choice\t");
-		System.out.println("Press 5 to Quit\t");
 
 		int choice = input.nextInt();
 
@@ -91,4 +89,3 @@ public class Main {
 	}
 	}
 
-}
