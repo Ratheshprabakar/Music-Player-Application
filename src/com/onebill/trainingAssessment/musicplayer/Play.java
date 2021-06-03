@@ -4,29 +4,32 @@
 package com.onebill.trainingAssessment.musicplayer;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Scanner;
 
 /**
  * @author Rathesh Prabakar
  *
  */
-public class Play {
+public class Play extends Configuration {
 	
+	Configuration conf = new Configuration();
 	public void playAllSongs() {
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet songs = null;
 			try {
+				con = conf.connectionConfig();
 				
-				//Step 1
+				/*//Step 1
 				Class.forName("com.mysql.jdbc.Driver");
 				
 				//Step 2 Establish the connection with the database with user and password
 				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"
 						+ "MusicPlayer?autoReconnect=true&useSSL=false","root","Onebill@2020");
-				
+				*/
 				// Step 3 Issuing Query
 				String query = "select * from MusicFiles order by Song_Title";
 				
@@ -70,15 +73,17 @@ public class Play {
 		ResultSet songs = null;
 			try {
 				
-				//Step 1
+				con = conf.connectionConfig();
+
+				/*//Step 1
 				Class.forName("com.mysql.jdbc.Driver");
 				
 				//Step 2 Establish the connection with the database with user and password
 				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"
-						+ "MusicPlayer?autoReconnect=true&useSSL=false","root","Onebill@2020");
+						+ "MusicPlayer?autoReconnect=true&useSSL=false","root","Onebill@2020");*/
 				
 				// Step 3 Issuing Query
-				String query = "select * from MusicFiles";
+				String query = "select * from MusicFiles order by RAND()";
 				
 				// Step 4 : Execute and process the query
 				 stmt = con.createStatement();
@@ -114,8 +119,60 @@ public class Play {
 				}
 			}
 	}
-	public void playAParticularSong() {
-		
+	public void playAParticularSong(String querySong) {
+		Connection con = null;
+		PreparedStatement pstmt = null;	
+		ResultSet songs = null;		
+			try {
+				
+				con = conf.connectionConfig();
+
+				/*//Step 1
+				Class.forName("com.mysql.jdbc.Driver");
+				
+				//Step 2 Establish the connection with the database with user and password
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false","root","Onebill@2020");*/
+				
+				// Step 3 Issuing Query
+				String query = "select * from MusicFiles where Song_Title = ?";
+				
+				// Step 4 : Execute and process the query
+				pstmt = con.prepareStatement(query);
+				
+				Scanner input = new Scanner(System.in);
+				/*System.out.println("Enter the Song Title you want to hear");
+				String querySong = input.nextLine();*/
+				
+				pstmt.setString(1, querySong);
+				songs = pstmt.executeQuery();
+				
+				 if(songs.next()) {
+					 System.out.print("Playing "+songs.getString("Song_Title")+"....\t");					 
+				 }
+				 else
+				 {
+					 System.out.println("OOPS, No song is available in the name of"+querySong);
+				 }
+				 input.close();
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			
+			//Step 5 : Close all the objects
+			finally {
+				try {
+					if(con!=null)
+						con.close();
+					if(pstmt!= null)
+						pstmt.close();
+					if(songs!=null)
+						songs.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
 	}
 
 }

@@ -4,7 +4,6 @@
 package com.onebill.trainingAssessment.musicplayer;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
@@ -13,20 +12,22 @@ import java.util.Scanner;
  * @author Rathesh Prabakar
  *
  */
-public class Search {
-
+public class Search extends Play {
+	Play playSong = new Play();
+	@SuppressWarnings("resource")
 	public void SearchSong() {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;	
 		ResultSet songs = null;			
 			try {
-				
-				//Step 1
+
+				con = conf.connectionConfig(); // To establish the connection with the database 
+				/*//Step 1
 				Class.forName("com.mysql.jdbc.Driver");
 				
 				//Step 2 Establish the connection with the database with user and password
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false","root","Onebill@2020");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false","root","Onebill@2020");*/
 				
 				// Step 3 Issuing Query
 				String query = "select * from MusicFiles where Song_Title = ?";
@@ -39,7 +40,7 @@ public class Search {
 				
 				pstmt.setString(1, songTitle);
 				songs = pstmt.executeQuery();
-				
+				int count=0;
 				 while(songs.next()) {
 					 int songId = songs.getInt("Song_ID");
 					 System.out.print(songs.getString("Song_Title")+"\t");
@@ -47,12 +48,29 @@ public class Search {
 					 System.out.print(songs.getString("Album_Name")+"\t"); 
 					 System.out.print(songId*50);
 					 System.out.println();
+					 count++;
 				 }
-				 System.out.println("Enter the Play ID to play that song\t");
-				 int playId = input.nextInt();
-				 System.out.println("You entered play ID is\t"+playId+"The Actually id of the song is\t"+(int)playId/50);
-					input.close();
-
+				 if(count!=0) {
+					 System.out.println("Enter the Play ID to play that song\t");
+					 int playId = input.nextInt();
+				 
+				 String newQuery = "select Song_Title from MusicFiles where Song_Id = ?";
+				 pstmt = con.prepareStatement(newQuery);	
+				 pstmt.setInt(1, (int)playId/50);
+				 songs = pstmt.executeQuery();
+				 
+				 if(songs.next()) {
+					 //System.out.println("Playing "+ songs.getString("Song_Title"));
+					 playSong.playAParticularSong(songs.getString("Song_Title"));
+				 }
+				 else
+				 {
+					 System.out.println("I think you entered wrong input");
+				 }
+				 input.close();
+				 }
+				 else
+					 System.out.println("I think you entered wrong input");
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

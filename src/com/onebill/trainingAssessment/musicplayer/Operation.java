@@ -4,7 +4,6 @@
 package com.onebill.trainingAssessment.musicplayer;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Properties;
 import java.util.Scanner;
@@ -13,11 +12,12 @@ import java.util.Scanner;
  * @author Rathesh Prabakar
  *
  */
-public class Operation {
+public class Operation extends Configuration {
 
 	/**
 	 * @param args
 	 */
+	Configuration conf = new Configuration();
 	public void addSongtoDB() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -25,14 +25,16 @@ public class Operation {
 
 		try {
 
-			// Step 1
+			con = conf.connectionConfig();
+
+			/*// Step 1
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Step 2 Establish the connection with the database with user and password
 			con = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false", "root",
 					"Onebill@2020");
-
+*/
 			// Step 3 Issuing Query
 			String query = "insert into MusicFiles (Song_Title,Artist_Name,Album_Name,Song_Location,Description) values (?,?,?,?,?)";
 
@@ -91,13 +93,15 @@ public class Operation {
 
 		try {
 
-			// Step 1
+			con = conf.connectionConfig();
+
+			/*// Step 1
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Step 2 Establish the connection with the database with user and password
 			con = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false", "root",
-					"Onebill@2020");
+					"Onebill@2020");*/
 
 			// Step 3 Issuing Query
 			String query = "update MusicFiles set Song_Title = ?,Artist_Name= ?,Album_Name =?,Song_Location =?, Description =? where Song_Title = ?";
@@ -163,8 +167,9 @@ public class Operation {
 		int count = 0;
 
 		try {
+			con = conf.connectionConfig();
 
-			// Step 1
+			/*// Step 1
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Step 2 Establish the connection with the database with user and password
@@ -173,7 +178,7 @@ public class Operation {
 			con = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/MusicPlayer?autoReconnect=true&useSSL=false", properties);
 
-			// Step 3 Issuing Query
+*/			// Step 3 Issuing Query
 			String query = "delete from  MusicFiles where Song_Title = ?";
 
 			// Step 4 : Execute and process the query

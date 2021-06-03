@@ -40,7 +40,9 @@ public class Main {
 				playSongs.playSongsRandomly();
 				break;
 			case "C":
-				playSongs.playAParticularSong();
+				System.out.println("Enter the song title you want to play");
+				String querySong = input.next();
+				playSongs.playAParticularSong(querySong);
 				break;
 			}
 			break;
@@ -54,7 +56,22 @@ public class Main {
 			show.showAllSongs();
 			break;
 		case 4: 
-			System.out.println("Modification of songs");
+			Operation edit = new Operation();
+			System.out.println("Press A to Add Songs to Songs Repository");
+			System.out.println("Press B to Edit an existing Song");
+			System.out.println("Press C to Delete an existing Song");
+			String userChoice = input.next();
+			switch(userChoice) {
+			case "A":
+				edit.addSongtoDB();
+				break;
+			case "B":
+				edit.editSonginDB();
+				break;
+			case "C":
+				edit.deleteASongInDB();
+				break;
+			}
 			break;
 		default:
 			System.out.println("Invalid Choice");
