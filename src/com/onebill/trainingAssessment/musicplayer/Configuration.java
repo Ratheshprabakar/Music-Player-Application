@@ -21,7 +21,7 @@ public class Configuration {
 
 		// Step 2 Establish the connection with the database with user and password
 		return (DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/" + "MusicPlayer?autoReconnect=true&useSSL=false", "root",
-				"Onebill@2020"));
+				"jdbc:mysql://localhost:3306/" + "MusicPlayer?autoReconnect=true&useSSL=false", "db_username",
+				"db_password"));
 	}
 }
